@@ -1,0 +1,119 @@
+@layer layout, reset;
+
+:root {
+    --font-family-base: system-ui;
+    --font-family-base-line-height: 1.6;
+    --font-family-heading: system-ui;
+    --font-family-heading-line-height: 1.1;
+    --font-family-code: monospace;
+    --body-max-witdh: 75ch;
+
+
+}
+@layer layout {
+     .primary-layout {
+        display: grid;
+        grid-template-columns: 
+        [full-width-start] minmax(0, 1fr)
+        [wide-start] minmax(0, 10rem)
+        [content-start] min(100%, 900px) [content-end]
+        minmax(0, 10rem) [wide-end]
+        minmax(0, 1fr) [full-width-end]
+     }
+     .primary-layout > * {
+        grid-column: content;
+     }
+}
+
+
+@layer reset {
+    /* Box sizing rules */
+    *,
+    *::before,
+    *::after {
+        box-sizing: border-box;
+    }
+
+    /* Prevent font size inflation */
+    html {
+        -moz-text-size-adjust: none;
+        -webkit-text-size-adjust: none;
+        text-size-adjust: none;
+        font-family: var(--font-family-base);
+        /* color-scheme: light dark; */
+        /* interpolate-size: allow-keywords; */
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        line-height: var(--font-family-base-line-height);
+    }
+    h1, h2, h3, h4,
+    button, input, label {
+        line-height: var(--font-family-heading-line-height);
+    } 
+    /* Inherit fonts for inputs and buttons */
+    input, button,
+    textarea, select {
+        font-family: inherit;
+        font-size: inherit;
+    }
+
+
+    h1, h2, h3, h4 {
+        text-wrap: balance;
+        font-family: var(--font-family-heading);
+    }
+    p, li, figcaption {
+        max-width: var(--body-max-width);
+        text-wrap: pretty;
+    }
+
+    code {
+        font-family: var(--font-family-code);
+    }
+
+    h1, h2, h3, h4, p, 
+    figure, blockquote, dl, dd {
+        margin-block-end: 0;
+    }
+
+    :is(ul, ol)[class]{
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    textarea:not([rows]) {
+        min-height: 10em;
+    }
+
+    table, math, time[datetime*=":"] {
+        font-variant-numeric: tabular-nums lining-nums;
+    }
+
+    @media (prefers-reduced-motion: no-prefereces) {
+        html {
+            scroll-behavior: smooth;
+        }
+
+    }
+    /* Make images easier to work with */
+    img, 
+    picture {
+        max-width: 100%;
+        display: block;
+    }
+    
+    
+
+    :target {
+        scroll-margin-block: 5ex;
+        scroll-margin-block: 5rlh;
+    }
+}
+
+button:not(:disabled) {
+    cursor: pointer;
+}
